@@ -6,7 +6,7 @@
 
     <groupId>com.epam.rd.autotasks</groupId>
     <artifactId>suffixing-app-test</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,11 +18,12 @@
     <dependencies>
 
         <dependency>
-            <groupId>suffixing</groupId>
-            <artifactId>suffixing</artifactId>
+            <groupId>com.epam.rd.autotasks</groupId>
+            <artifactId>suffixing-app-test</artifactId>
             <version>1.0</version>
+
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/suffixing.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/resources/suffixing-app-test-1.0.jar</systemPath>
         </dependency>
 
 
@@ -76,7 +77,29 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!-- here we specify that we want to use the main method within the App class -->
+                            <mainClass>vasilisushka.SuffixingApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
+        <testResources>
+            <testResource>
+                <directory>
+                    src/test/resources
+                </directory>
+            </testResource>
+        </testResources>
     </build>
 
 </project>
